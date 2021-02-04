@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LoanConformance.BusinessLogic.Impl\LoanConformance.BusinessLogic.Impl.csproj" />
     <ProjectReference Include="..\LoanConformance.BusinessLogic\LoanConformance.BusinessLogic.csproj" />
     <ProjectReference Include="..\LoanConformance.Data.InMemory.Impl\LoanConformance.Data.InMemory.Impl.csproj" />
