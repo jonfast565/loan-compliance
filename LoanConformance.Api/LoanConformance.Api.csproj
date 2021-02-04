@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoanConformance.BusinessLogic.Impl\LoanConformance.BusinessLogic.Impl.csproj" />
+    <ProjectReference Include="..\LoanConformance.BusinessLogic\LoanConformance.BusinessLogic.csproj" />
+    <ProjectReference Include="..\LoanConformance.Data.InMemory.Impl\LoanConformance.Data.InMemory.Impl.csproj" />
+    <ProjectReference Include="..\LoanConformance.Data\LoanConformance.Data.csproj" />
+    <ProjectReference Include="..\LoanConformance.Models.Api\LoanConformance.Models.Api.csproj" />
+  </ItemGroup>
+
+
+</Project>

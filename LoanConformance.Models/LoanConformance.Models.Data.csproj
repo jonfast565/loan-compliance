@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoanConformance.Models.Enums\LoanConformance.Models.Enums.csproj" />
+  </ItemGroup>
+
+</Project>
