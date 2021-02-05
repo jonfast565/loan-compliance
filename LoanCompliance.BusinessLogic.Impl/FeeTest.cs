@@ -33,7 +33,7 @@ namespace LoanCompliance.BusinessLogic.Impl
 
             if (!applicableFees.Any())
                 return new ComplianceResult(true,
-                    $"No applicable fees found for type {query.LoanType} in state {query.State}, test not run");
+                    $"No applicable fees for this loan in state {query.State}, test not run");
 
             var totalApplicableFees = applicableFees.Sum(applicableFee => applicableFee.FeeCharged);
             var feeRange = feeRanges.First(x => x.State == query.State

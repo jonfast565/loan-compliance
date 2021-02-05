@@ -9,6 +9,11 @@ namespace LoanCompliance.BusinessLogic.Impl
             if (query.AnnualPercentageRate < 0 || query.AnnualPercentageRate > 100)
                 return new ComplianceResult("APR not between 0 and 100") { Skip = true };
 
+            if (query.LoanAmount < 0)
+            {
+                return new ComplianceResult("Loan amount is less than 0") { Skip = true };
+            }
+
             return new ComplianceResult();
         }
     }

@@ -26,10 +26,8 @@ namespace LoanCompliance.BusinessLogic.Impl
             }
 
             if (applicableGlobalRule.MaximumLoanAmount >= query.LoanAmount) return new ComplianceResult();
-
-            return new ComplianceResult($"Maximum loan amount is {applicableGlobalRule.MaximumLoanAmount} for this state, yours is {query.LoanAmount}. " +
+                return new ComplianceResult($"Maximum loan amount is {applicableGlobalRule.MaximumLoanAmount} for this state, yours is {query.LoanAmount}. " +
                                         "This amount is not eligible for compliance testing.") {Skip = true};
-
         }
     }
 }

@@ -44,7 +44,7 @@ namespace LoanCompliance.Data.InMemory.Impl
                         State = State.California,
                         LoanType = LoanType.Conventional,
                         OccupancyType = LoanOccupancyType.SecondaryOccupancy,
-                        AnnualRatePercentage = 0.05m
+                        AnnualRatePercentage = 0.04m
                     },
                     new()
                     {
@@ -58,7 +58,7 @@ namespace LoanCompliance.Data.InMemory.Impl
                         State = State.California,
                         LoanType = LoanType.FHA,
                         OccupancyType = LoanOccupancyType.SecondaryOccupancy,
-                        AnnualRatePercentage = 0.05m
+                        AnnualRatePercentage = 0.04m
                     }
                 })
                 .Concat(GetAprDataForAllLoanTypes(State.California, LoanType.VA, 0.03m));
@@ -85,9 +85,10 @@ namespace LoanCompliance.Data.InMemory.Impl
                 .Concat(GetGlobalRulesetForLoanTypes(State.NewYork, 750_000.00m, LoanType.Conventional))
                 .Concat(GetGlobalRulesetForLoanTypes(State.Virginia, decimal.MaxValue, LoanType.VA,
                     LoanType.Conventional, LoanType.FHA))
-                .Concat(GetGlobalRulesetForLoanTypes(State.Maryland, 400_000.00m))
+                .Concat(GetGlobalRulesetForLoanTypes(State.Maryland, 400_000.00m, LoanType.VA, LoanType.FHA, LoanType.Conventional))
                 .Concat(GetGlobalRulesetForLoanTypes(State.Florida, decimal.MaxValue, LoanType.Conventional,
-                    LoanType.VA));
+                    LoanType.VA))
+                .Concat(GetGlobalRulesetForLoanTypes(State.California, 600_000.00m, LoanType.Conventional, LoanType.FHA, LoanType.VA));
             return result;
         }
 
