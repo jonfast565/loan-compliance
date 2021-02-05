@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using LoanConformance.Data;
-using LoanConformance.Models.Api;
+﻿using System.Linq;
+using LoanCompliance.Data;
+using LoanCompliance.Models.Api;
 
-namespace LoanConformance.BusinessLogic.Impl
+namespace LoanCompliance.BusinessLogic.Impl
 {
     public class AprTest : IComplianceProcessor
     {
@@ -23,18 +22,13 @@ namespace LoanConformance.BusinessLogic.Impl
                 && x.OccupancyType == query.OccupancyType
                 && x.State == query.State);
 
-            if (aprRule == null)
-            {
-                return new ComplianceResult();
-            }
+            if (aprRule == null) return new ComplianceResult();
 
             if (aprRule.AnnualRatePercentage > normalizedApr)
-            {
                 return new ComplianceResult(
                     $"{aprRule.AnnualRatePercentage}% > {normalizedApr}% " +
                     $"maximum for {query.LoanType} in {query.State} " +
                     $"with {query.OccupancyType}");
-            }
             return new ComplianceResult();
         }
     }

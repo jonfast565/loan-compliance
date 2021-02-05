@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace LoanConformance.Api
+namespace LoanCompliance.Api
 {
     public class Program
     {

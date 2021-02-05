@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using LoanConformance.Models.Data;
+using LoanCompliance.Models.Data;
 
-namespace LoanConformance.Data
+namespace LoanCompliance.Data
 {
     public interface IDataAccess
     {

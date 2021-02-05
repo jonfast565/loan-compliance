@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
-using LoanConformance.Models.Data;
-using LoanConformance.Models.Enums;
+using LoanCompliance.Models.Data;
+using LoanCompliance.Models.Enums;
 
-namespace LoanConformance.Data.InMemory.Impl
+namespace LoanCompliance.Data.InMemory.Impl
 {
     public class InMemoryDataAccess : IDataAccess
     {

@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using LoanConformance.BusinessLogic;
-using LoanConformance.BusinessLogic.Impl;
-using LoanConformance.Data;
-using LoanConformance.Models.Api;
+﻿using LoanCompliance.BusinessLogic;
+using LoanCompliance.Models.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace LoanConformance.Api.Controllers
+namespace LoanCompliance.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -15,29 +11,19 @@ namespace LoanConformance.Api.Controllers
     {
         private readonly ILogger<LoanController> _logger;
 
-        private readonly List<IComplianceProcessor> _processors;
+        private readonly IComplianceProcessor _processor;
 
-        public LoanController(ILogger<LoanController> logger, IDataAccess dataAccess)
+        public LoanController(ILogger<LoanController> logger, IComplianceProcessor processor)
         {
             _logger = logger;
-            _processors = new List<IComplianceProcessor>
-            {
-                new ValidationTest(),
-                new GlobalsTest(dataAccess),
-                new AprTest(dataAccess),
-                new FeeTest(dataAccess)
-            };
+            _processor = processor;
         }
 
         [HttpPut]
         [Route("process")]
         public ComplianceResult ProcessLoan(ComplianceQuery query)
         {
-            var complianceResult = new ComplianceResult();
-            complianceResult = _processors
-                .Aggregate(complianceResult,
-                    (current, check) =>
-                        current + check.ProcessConformanceStep(query));
+            var complianceResult = _processor.ProcessConformanceStep(query);
             return complianceResult;
         }
     }

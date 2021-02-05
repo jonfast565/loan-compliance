@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoanConformance.Tests
+namespace LoanCompliance.Tests
 {
     [TestClass]
     public class UnitTest

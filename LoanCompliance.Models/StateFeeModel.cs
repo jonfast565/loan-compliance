@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using LoanConformance.Models.Enums;
+using LoanCompliance.Models.Enums;
 
-namespace LoanConformance.Models.Data
+namespace LoanCompliance.Models.Data
 {
     public class StateFeeModel
     {

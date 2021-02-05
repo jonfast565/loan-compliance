@@ -2,7 +2,7 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace LoanConformance.Models.Api
+namespace LoanCompliance.Models.Api
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ComplianceResult

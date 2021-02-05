@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using LoanConformance.Data;
-using LoanConformance.Models.Api;
+using LoanCompliance.Data;
+using LoanCompliance.Models.Api;
 
-namespace LoanConformance.BusinessLogic.Impl
+namespace LoanCompliance.BusinessLogic.Impl
 {
     public class GlobalsTest : IComplianceProcessor
     {

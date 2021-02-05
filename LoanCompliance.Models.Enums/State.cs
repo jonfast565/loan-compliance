@@ -1,4 +1,4 @@
-﻿namespace LoanConformance.Models.Enums
+﻿namespace LoanCompliance.Models.Enums
 {
     public enum State
     {

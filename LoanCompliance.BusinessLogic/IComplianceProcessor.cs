@@ -1,6 +1,6 @@
-﻿using LoanConformance.Models.Api;
+﻿using LoanCompliance.Models.Api;
 
-namespace LoanConformance.BusinessLogic
+namespace LoanCompliance.BusinessLogic
 {
     public interface IComplianceProcessor
     {

@@ -1,8 +1,8 @@
-﻿using LoanConformance.Models.Enums;
+﻿using LoanCompliance.Models.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace LoanConformance.Models.Api
+namespace LoanCompliance.Models.Api
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class LoanFeeAllocation

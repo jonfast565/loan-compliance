@@ -1,6 +1,6 @@
-﻿using LoanConformance.Models.Api;
+﻿using LoanCompliance.Models.Api;
 
-namespace LoanConformance.BusinessLogic.Impl
+namespace LoanCompliance.BusinessLogic.Impl
 {
     public class ValidationTest : IComplianceProcessor
     {
