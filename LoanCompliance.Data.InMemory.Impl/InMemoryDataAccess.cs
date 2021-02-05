@@ -205,7 +205,7 @@ namespace LoanCompliance.Data.InMemory.Impl
                 .Select(loanFeeType => new StateFeeModel
                 {
                     State = state,
-                    LoanFeeTypes = loanFeeType,
+                    LoanFeeType = loanFeeType,
                     MaxChargeFeeRanges = stateFeeRanges.Where(x => x.State == state)
                 });
             return result;

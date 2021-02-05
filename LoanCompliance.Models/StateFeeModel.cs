@@ -6,7 +6,7 @@ namespace LoanCompliance.Models.Data
     public class StateFeeModel
     {
         public State State { get; set; }
-        public LoanFeeType LoanFeeTypes { get; set; }
+        public LoanFeeType LoanFeeType { get; set; }
         public IEnumerable<StateFeeRangeModel> MaxChargeFeeRanges { get; set; }
     }
 }
