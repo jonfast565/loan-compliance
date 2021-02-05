@@ -15,7 +15,7 @@ namespace LoanConformance.BusinessLogic.Impl
 
         public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
-            var globals = _dataAccess.GetGlobalRuleset();
+            var globals = _dataAccess.GetGlobalRulesetData();
             var applicableGlobalRule = globals.FirstOrDefault(x => x.State == query.State
                                                                    && x.ApplicableLoanType == query.LoanType
                                                                    && x.MaximumLoanAmount <= query.LoanAmount);

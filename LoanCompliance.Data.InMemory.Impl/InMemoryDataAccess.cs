@@ -80,7 +80,7 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        public IEnumerable<GlobalRulesetModel> GetGlobalRuleset()
+        public IEnumerable<GlobalRulesetModel> GetGlobalRulesetData()
         {
             var result = new List<GlobalRulesetModel>()
                 .Concat(GetGlobalRulesetForLoanTypes(State.NewYork, 750_000.00m, LoanType.Conventional))

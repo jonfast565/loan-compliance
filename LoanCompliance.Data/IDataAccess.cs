@@ -7,6 +7,6 @@ namespace LoanConformance.Data
     {
         IEnumerable<StateAprModel> GetAprData();
         IEnumerable<StateFeeModel> GetFeeData();
-        IEnumerable<GlobalRulesetModel> GetGlobalRuleset();
+        IEnumerable<GlobalRulesetModel> GetGlobalRulesetData();
     }
 }
