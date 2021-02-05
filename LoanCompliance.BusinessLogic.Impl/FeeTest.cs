@@ -44,7 +44,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             return totalApplicableFees > feeRange.PercentageCharged * query.LoanAmount
                 ? new ComplianceResult("FeesTest", false,
                     $"The applicable fees charged ${totalApplicableFees} is greater than {feeRange.PercentageCharged * 100}% of the total loan amount in {query.State}.",
-                    $"Loan amount {query.LoanAmount} at {feeRange.PercentageCharged * 100}% = ${feeRange.PercentageCharged * query.LoanAmount}."
+                    $"Loan amount of ${query.LoanAmount} at {feeRange.PercentageCharged * 100}% = ${feeRange.PercentageCharged * query.LoanAmount}."
                 )
                 : new ComplianceResult("FeesTest", true, "Passed");
         }

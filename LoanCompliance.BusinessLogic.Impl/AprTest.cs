@@ -33,7 +33,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             if (normalizedApr > aprRule.AnnualRatePercentage)
                 return new ComplianceResult(
                     "AptTest", false,
-                    $"The {aprRule.AnnualRatePercentage * 100}% APR > {query.AnnualPercentageRate}% APR " +
+                    $"The {aprRule.AnnualRatePercentage * 100}% APR < {query.AnnualPercentageRate}% APR " +
                     $"maximum for {query.LoanType} in {query.State} " +
                     $"with {query.OccupancyType}");
 

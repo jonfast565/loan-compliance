@@ -19,10 +19,7 @@ namespace LoanCompliance.Models.Api
 
         public ComplianceResult(string testName, bool passed, params string[] messages)
         {
-            var results = messages
-                .Select(message => new TestResult(testName, passed, message))
-                .ToList();
-            Results = results;
+            Results = new List<TestResult> { new(testName, passed, messages) };
         }
 
         [JsonRequired] public bool Success => Results.All(x => x.Passed);
