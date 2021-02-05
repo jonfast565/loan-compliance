@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LoanCompliance.BusinessLogic.Impl\LoanCompliance.BusinessLogic.Impl.csproj" />
+    <ProjectReference Include="..\LoanCompliance.Data.InMemory.Impl\LoanCompliance.Data.InMemory.Impl.csproj" />
+  </ItemGroup>
+
 </Project>
