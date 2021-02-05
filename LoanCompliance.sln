@@ -11,15 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.Tests", "Loa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.Data", "LoanCompliance.Data\LoanCompliance.Data.csproj", "{9468AFB0-8126-4F7A-8098-9F2A1A1A54F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCompliance.Data.InMemory.Impl", "LoanCompliance.Data.InMemory.Impl\LoanCompliance.Data.InMemory.Impl.csproj", "{4EDAB9F7-2E90-463E-A43C-A67CE8C1663D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.Data.InMemory.Impl", "LoanCompliance.Data.InMemory.Impl\LoanCompliance.Data.InMemory.Impl.csproj", "{4EDAB9F7-2E90-463E-A43C-A67CE8C1663D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCompliance.Models.Api", "LoanCompliance.Models.Api\LoanCompliance.Models.Api.csproj", "{239B3C04-AEF2-45F4-9AC8-4235402BBFF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.Models.Api", "LoanCompliance.Models.Api\LoanCompliance.Models.Api.csproj", "{239B3C04-AEF2-45F4-9AC8-4235402BBFF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCompliance.BusinessLogic", "LoanCompliance.BusinessLogic\LoanCompliance.BusinessLogic.csproj", "{2D301AB7-0B8A-4A4A-834C-D7F6C73FEF52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.BusinessLogic", "LoanCompliance.BusinessLogic\LoanCompliance.BusinessLogic.csproj", "{2D301AB7-0B8A-4A4A-834C-D7F6C73FEF52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCompliance.BusinessLogic.Impl", "LoanCompliance.BusinessLogic.Impl\LoanCompliance.BusinessLogic.Impl.csproj", "{DB48A9C8-8DC8-4752-9474-1A5DDF45D5ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.BusinessLogic.Impl", "LoanCompliance.BusinessLogic.Impl\LoanCompliance.BusinessLogic.Impl.csproj", "{DB48A9C8-8DC8-4752-9474-1A5DDF45D5ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanCompliance.Models.Enums", "LoanCompliance.Models.Enums\LoanCompliance.Models.Enums.csproj", "{75B7724F-5C6C-44EF-A0D7-9A6A59885E05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanCompliance.Models.Enums", "LoanCompliance.Models.Enums\LoanCompliance.Models.Enums.csproj", "{75B7724F-5C6C-44EF-A0D7-9A6A59885E05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

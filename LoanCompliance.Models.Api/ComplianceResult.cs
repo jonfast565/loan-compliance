@@ -25,11 +25,20 @@ namespace LoanCompliance.Models.Api
             Reasons = new List<string> {failure};
         }
 
+        [JsonIgnore]
+        public bool Skip { get; set; }
+
         [JsonRequired] public bool Success { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]
         public List<string> Reasons { get; set; }
 
+        /// <summary>
+        /// Allows us to use LINQ to aggregate results
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static ComplianceResult operator +(ComplianceResult a, ComplianceResult b)
         {
             return new()
