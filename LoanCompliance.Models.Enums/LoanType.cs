@@ -1,6 +1,6 @@
 ﻿namespace LoanConformance.Models.Enums
 {
-    public enum LoanTypeEnum
+    public enum LoanType
     {
         Conventional,
         FHA,

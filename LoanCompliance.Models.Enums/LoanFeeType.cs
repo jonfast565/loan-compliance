@@ -1,6 +1,6 @@
 ﻿namespace LoanConformance.Models.Enums
 {
-    public enum LoanFeeTypeEnum
+    public enum LoanFeeType
     {
         FloodCertification,
         Processing,

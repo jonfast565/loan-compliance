@@ -9,7 +9,7 @@ namespace LoanConformance.Models.Api
     {
         [JsonRequired]
         [JsonConverter(typeof(StringEnumConverter))]
-        public LoanFeeTypeEnum LoanFeeType { get; set; }
+        public LoanFeeType LoanFeeType { get; set; }
 
         [JsonRequired] public decimal FeeCharged { get; set; }
     }

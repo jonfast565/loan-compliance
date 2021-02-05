@@ -15,80 +15,80 @@ namespace LoanConformance.Data.InMemory.Impl
                 {
                     new()
                     {
-                        State = StateEnum.NewYork,
-                        LoanType = LoanTypeEnum.Conventional,
-                        OccupancyType = LoanOccupancyTypeEnum.PrimaryOccupancy,
+                        State = State.NewYork,
+                        LoanType = LoanType.Conventional,
+                        OccupancyType = LoanOccupancyType.PrimaryOccupancy,
                         AnnualRatePercentage = 0.06m
                     },
                     new()
                     {
-                        State = StateEnum.NewYork,
-                        LoanType = LoanTypeEnum.Conventional,
-                        OccupancyType = LoanOccupancyTypeEnum.SecondaryOccupancy,
+                        State = State.NewYork,
+                        LoanType = LoanType.Conventional,
+                        OccupancyType = LoanOccupancyType.SecondaryOccupancy,
                         AnnualRatePercentage = 0.08m
                     }
                 }
-                .Concat(GetAprDataForAllLoanTypes(StateEnum.Virginia, LoanOccupancyTypeEnum.PrimaryOccupancy, 0.05m))
-                .Concat(GetAprDataForAllLoanTypes(StateEnum.Virginia, LoanOccupancyTypeEnum.SecondaryOccupancy, 0.08m))
-                .Concat(GetAprDataForAllLoanTypes(StateEnum.Maryland, 0.04m))
+                .Concat(GetAprDataForAllLoanTypes(State.Virginia, LoanOccupancyType.PrimaryOccupancy, 0.05m))
+                .Concat(GetAprDataForAllLoanTypes(State.Virginia, LoanOccupancyType.SecondaryOccupancy, 0.08m))
+                .Concat(GetAprDataForAllLoanTypes(State.Maryland, 0.04m))
                 .Concat(new List<StateAprModel>
                 {
                     new()
                     {
-                        State = StateEnum.California,
-                        LoanType = LoanTypeEnum.Conventional,
-                        OccupancyType = LoanOccupancyTypeEnum.PrimaryOccupancy,
+                        State = State.California,
+                        LoanType = LoanType.Conventional,
+                        OccupancyType = LoanOccupancyType.PrimaryOccupancy,
                         AnnualRatePercentage = 0.05m
                     },
                     new()
                     {
-                        State = StateEnum.California,
-                        LoanType = LoanTypeEnum.Conventional,
-                        OccupancyType = LoanOccupancyTypeEnum.SecondaryOccupancy,
+                        State = State.California,
+                        LoanType = LoanType.Conventional,
+                        OccupancyType = LoanOccupancyType.SecondaryOccupancy,
                         AnnualRatePercentage = 0.05m
                     },
                     new()
                     {
-                        State = StateEnum.California,
-                        LoanType = LoanTypeEnum.FHA,
-                        OccupancyType = LoanOccupancyTypeEnum.PrimaryOccupancy,
+                        State = State.California,
+                        LoanType = LoanType.FHA,
+                        OccupancyType = LoanOccupancyType.PrimaryOccupancy,
                         AnnualRatePercentage = 0.05m
                     },
                     new()
                     {
-                        State = StateEnum.California,
-                        LoanType = LoanTypeEnum.FHA,
-                        OccupancyType = LoanOccupancyTypeEnum.SecondaryOccupancy,
+                        State = State.California,
+                        LoanType = LoanType.FHA,
+                        OccupancyType = LoanOccupancyType.SecondaryOccupancy,
                         AnnualRatePercentage = 0.05m
                     }
                 })
-                .Concat(GetAprDataForAllLoanTypes(StateEnum.California, LoanTypeEnum.VA, 0.03m));
+                .Concat(GetAprDataForAllLoanTypes(State.California, LoanType.VA, 0.03m));
             return aprData;
         }
 
         public IEnumerable<StateFeeModel> GetFeeData()
         {
             var result = new List<StateFeeModel>()
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Virginia, LoanFeeTypeEnum.FloodCertification,
-                    LoanFeeTypeEnum.Processing, LoanFeeTypeEnum.Settlement))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Maryland, LoanFeeTypeEnum.Application,
-                    LoanFeeTypeEnum.CreditReport))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.California, LoanFeeTypeEnum.Application,
-                    LoanFeeTypeEnum.Settlement))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Florida, LoanFeeTypeEnum.Application,
-                    LoanFeeTypeEnum.FloodCertification, LoanFeeTypeEnum.TitleSearch));
+                .Concat(GetStateFeeDataForFeeTypes(State.Virginia, LoanFeeType.FloodCertification,
+                    LoanFeeType.Processing, LoanFeeType.Settlement))
+                .Concat(GetStateFeeDataForFeeTypes(State.Maryland, LoanFeeType.Application,
+                    LoanFeeType.CreditReport))
+                .Concat(GetStateFeeDataForFeeTypes(State.California, LoanFeeType.Application,
+                    LoanFeeType.Settlement))
+                .Concat(GetStateFeeDataForFeeTypes(State.Florida, LoanFeeType.Application,
+                    LoanFeeType.FloodCertification, LoanFeeType.TitleSearch));
             return result;
         }
 
         public IEnumerable<GlobalRulesetModel> GetGlobalRuleset()
         {
             var result = new List<GlobalRulesetModel>()
-                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.NewYork, 750_000.00m, LoanTypeEnum.Conventional))
-                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Virginia, decimal.MaxValue, LoanTypeEnum.VA,
-                    LoanTypeEnum.Conventional, LoanTypeEnum.FHA))
-                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Maryland, 400_000.00m))
-                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Florida, decimal.MaxValue, LoanTypeEnum.Conventional,
-                    LoanTypeEnum.VA));
+                .Concat(GetGlobalRulesetForLoanTypes(State.NewYork, 750_000.00m, LoanType.Conventional))
+                .Concat(GetGlobalRulesetForLoanTypes(State.Virginia, decimal.MaxValue, LoanType.VA,
+                    LoanType.Conventional, LoanType.FHA))
+                .Concat(GetGlobalRulesetForLoanTypes(State.Maryland, 400_000.00m))
+                .Concat(GetGlobalRulesetForLoanTypes(State.Florida, decimal.MaxValue, LoanType.Conventional,
+                    LoanType.VA));
             return result;
         }
 
@@ -98,42 +98,42 @@ namespace LoanConformance.Data.InMemory.Impl
             {
                 new()
                 {
-                    State = StateEnum.Virginia, LowerValue = 0, UpperValue = decimal.MaxValue, PercentageCharged = 0.07m
+                    State = State.Virginia, LowerValue = 0, UpperValue = decimal.MaxValue, PercentageCharged = 0.07m
                 },
-                new() {State = StateEnum.Maryland, LowerValue = 0, UpperValue = 200_000.00m, PercentageCharged = 0.04m},
+                new() {State = State.Maryland, LowerValue = 0, UpperValue = 200_000.00m, PercentageCharged = 0.04m},
                 new()
                 {
-                    State = StateEnum.Maryland, LowerValue = 200_000.00m, UpperValue = decimal.MaxValue,
+                    State = State.Maryland, LowerValue = 200_000.00m, UpperValue = decimal.MaxValue,
                     PercentageCharged = 0.06m
                 },
                 new()
                 {
-                    State = StateEnum.California, LowerValue = 0, UpperValue = 50_000.00m, PercentageCharged = 0.03m
+                    State = State.California, LowerValue = 0, UpperValue = 50_000.00m, PercentageCharged = 0.03m
                 },
                 new()
                 {
-                    State = StateEnum.California, LowerValue = 50_000.00m, UpperValue = 150_000.00m,
+                    State = State.California, LowerValue = 50_000.00m, UpperValue = 150_000.00m,
                     PercentageCharged = 0.04m
                 },
                 new()
                 {
-                    State = StateEnum.California, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
+                    State = State.California, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
                     PercentageCharged = 0.05m
                 },
-                new() {State = StateEnum.Florida, LowerValue = 0, UpperValue = 20_000.00m, PercentageCharged = 0.06m},
+                new() {State = State.Florida, LowerValue = 0, UpperValue = 20_000.00m, PercentageCharged = 0.06m},
                 new()
                 {
-                    State = StateEnum.Florida, LowerValue = 20_000.00m, UpperValue = 75_000.00m,
+                    State = State.Florida, LowerValue = 20_000.00m, UpperValue = 75_000.00m,
                     PercentageCharged = 0.08m
                 },
                 new()
                 {
-                    State = StateEnum.Florida, LowerValue = 75_000.00m, UpperValue = 150_000.00m,
+                    State = State.Florida, LowerValue = 75_000.00m, UpperValue = 150_000.00m,
                     PercentageCharged = 0.09m
                 },
                 new()
                 {
-                    State = StateEnum.Florida, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
+                    State = State.Florida, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
                     PercentageCharged = 0.1m
                 }
             };
@@ -142,10 +142,10 @@ namespace LoanConformance.Data.InMemory.Impl
 
         #region Data Generators
 
-        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(StateEnum state, decimal percentageAmount)
+        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(State state, decimal percentageAmount)
         {
-            var result = from loanType in (LoanTypeEnum[]) Enum.GetValues(typeof(LoanTypeEnum))
-                from occupancy in (LoanOccupancyTypeEnum[]) Enum.GetValues(typeof(LoanOccupancyTypeEnum))
+            var result = from loanType in (LoanType[]) Enum.GetValues(typeof(LoanType))
+                from occupancy in (LoanOccupancyType[]) Enum.GetValues(typeof(LoanOccupancyType))
                 select new StateAprModel
                 {
                     AnnualRatePercentage = percentageAmount,
@@ -156,10 +156,10 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(StateEnum state,
-            LoanOccupancyTypeEnum occupancy, decimal percentageAmount)
+        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(State state,
+            LoanOccupancyType occupancy, decimal percentageAmount)
         {
-            var result = ((LoanTypeEnum[]) Enum.GetValues(typeof(LoanTypeEnum)))
+            var result = ((LoanType[]) Enum.GetValues(typeof(LoanType)))
                 .Select(loanType => new StateAprModel
                 {
                     AnnualRatePercentage = percentageAmount,
@@ -170,10 +170,10 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(StateEnum state, LoanTypeEnum loanType,
+        private static IEnumerable<StateAprModel> GetAprDataForAllLoanTypes(State state, LoanType loanType,
             decimal percentageAmount)
         {
-            var result = ((LoanOccupancyTypeEnum[]) Enum.GetValues(typeof(LoanOccupancyTypeEnum)))
+            var result = ((LoanOccupancyType[]) Enum.GetValues(typeof(LoanOccupancyType)))
                 .Select(occupancy => new StateAprModel
                 {
                     AnnualRatePercentage = percentageAmount,
@@ -184,9 +184,9 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<GlobalRulesetModel> GetGlobalRulesetForLoanTypes(StateEnum state,
+        private static IEnumerable<GlobalRulesetModel> GetGlobalRulesetForLoanTypes(State state,
             decimal maximumLoanAmount,
-            params LoanTypeEnum[] loanTypes)
+            params LoanType[] loanTypes)
         {
             var result = loanTypes
                 .Select(loanType => new GlobalRulesetModel
@@ -198,8 +198,8 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<StateFeeModel> GetStateFeeDataForFeeTypes(StateEnum state,
-            params LoanFeeTypeEnum[] loanFeeTypes)
+        private static IEnumerable<StateFeeModel> GetStateFeeDataForFeeTypes(State state,
+            params LoanFeeType[] loanFeeTypes)
         {
             var stateFeeRanges = GetStateFeeRanges().ToList();
             var result = loanFeeTypes

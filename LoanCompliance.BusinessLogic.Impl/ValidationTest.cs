@@ -2,14 +2,14 @@
 
 namespace LoanConformance.BusinessLogic.Impl
 {
-    public class ValidationTest : IConformanceProcessor
+    public class ValidationTest : IComplianceProcessor
     {
-        public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
+        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
             if (query.AnnualPercentageRate < 0 || query.AnnualPercentageRate > 100)
-                return new ConformanceResult("APR not between 0 and 100");
+                return new ComplianceResult("APR not between 0 and 100");
 
-            return new ConformanceResult();
+            return new ComplianceResult();
         }
     }
 }

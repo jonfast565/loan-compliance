@@ -6,7 +6,7 @@ using Newtonsoft.Json.Converters;
 namespace LoanConformance.Models.Api
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ConformanceQuery
+    public class ComplianceQuery
     {
         [JsonRequired] public decimal LoanAmount { get; set; }
 
@@ -14,15 +14,15 @@ namespace LoanConformance.Models.Api
 
         [JsonRequired]
         [JsonConverter(typeof(StringEnumConverter))]
-        public StateEnum State { get; set; }
+        public State State { get; set; }
 
         [JsonRequired]
         [JsonConverter(typeof(StringEnumConverter))]
-        public LoanTypeEnum LoanType { get; set; }
+        public LoanType LoanType { get; set; }
 
         [JsonRequired]
         [JsonConverter(typeof(StringEnumConverter))]
-        public LoanOccupancyTypeEnum OccupancyType { get; set; }
+        public LoanOccupancyType OccupancyType { get; set; }
 
         [JsonRequired] public List<LoanFeeAllocation> FeeAllocations { get; set; }
     }

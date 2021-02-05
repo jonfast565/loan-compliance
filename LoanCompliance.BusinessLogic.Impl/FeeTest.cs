@@ -4,7 +4,7 @@ using LoanConformance.Models.Api;
 
 namespace LoanConformance.BusinessLogic.Impl
 {
-    public class FeeTest : IConformanceProcessor
+    public class FeeTest : IComplianceProcessor
     {
         private readonly IDataAccess _dataAccess;
 
@@ -13,10 +13,10 @@ namespace LoanConformance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
+        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
             var fees = _dataAccess.GetFeeData();
-            return new ConformanceResult();
+            return new ComplianceResult();
         }
     }
 }

@@ -5,21 +5,21 @@ using Newtonsoft.Json;
 namespace LoanConformance.Models.Api
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class ConformanceResult
+    public class ComplianceResult
     {
-        public ConformanceResult()
+        public ComplianceResult()
         {
             Success = true;
             Reasons = new List<string>();
         }
 
-        public ConformanceResult(List<string> failures)
+        public ComplianceResult(List<string> failures)
         {
             Success = false;
             Reasons = failures;
         }
 
-        public ConformanceResult(string failure)
+        public ComplianceResult(string failure)
         {
             Success = false;
             Reasons = new List<string> {failure};
@@ -30,7 +30,7 @@ namespace LoanConformance.Models.Api
         [JsonProperty(Required = Required.AllowNull)]
         public List<string> Reasons { get; set; }
 
-        public static ConformanceResult operator +(ConformanceResult a, ConformanceResult b)
+        public static ComplianceResult operator +(ComplianceResult a, ComplianceResult b)
         {
             return new()
             {

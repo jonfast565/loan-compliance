@@ -15,12 +15,12 @@ namespace LoanConformance.Api.Controllers
     {
         private readonly ILogger<LoanController> _logger;
 
-        private readonly List<IConformanceProcessor> _processors;
+        private readonly List<IComplianceProcessor> _processors;
 
         public LoanController(ILogger<LoanController> logger, IDataAccess dataAccess)
         {
             _logger = logger;
-            _processors = new List<IConformanceProcessor>
+            _processors = new List<IComplianceProcessor>
             {
                 new ValidationTest(),
                 new GlobalsTest(dataAccess),
@@ -31,9 +31,9 @@ namespace LoanConformance.Api.Controllers
 
         [HttpPut]
         [Route("process")]
-        public ConformanceResult ProcessLoan(ConformanceQuery query)
+        public ComplianceResult ProcessLoan(ComplianceQuery query)
         {
-            var complianceResult = new ConformanceResult();
+            var complianceResult = new ComplianceResult();
             complianceResult = _processors
                 .Aggregate(complianceResult,
                     (current, check) =>

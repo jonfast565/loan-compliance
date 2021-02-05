@@ -5,7 +5,7 @@ using LoanConformance.Models.Api;
 
 namespace LoanConformance.BusinessLogic.Impl
 {
-    public class AprTest : IConformanceProcessor
+    public class AprTest : IComplianceProcessor
     {
         private readonly IDataAccess _dataAccess;
 
@@ -14,7 +14,7 @@ namespace LoanConformance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
+        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
             var aprData = _dataAccess.GetAprData();
             var normalizedApr = query.AnnualPercentageRate / 100;
@@ -25,17 +25,17 @@ namespace LoanConformance.BusinessLogic.Impl
 
             if (aprRule == null)
             {
-                return new ConformanceResult();
+                return new ComplianceResult();
             }
 
             if (aprRule.AnnualRatePercentage > normalizedApr)
             {
-                return new ConformanceResult(
+                return new ComplianceResult(
                     $"{aprRule.AnnualRatePercentage}% > {normalizedApr}% " +
                     $"maximum for {query.LoanType} in {query.State} " +
                     $"with {query.OccupancyType}");
             }
-            return new ConformanceResult();
+            return new ComplianceResult();
         }
     }
 }

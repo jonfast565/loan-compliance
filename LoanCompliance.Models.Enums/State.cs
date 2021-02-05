@@ -1,6 +1,6 @@
 ﻿namespace LoanConformance.Models.Enums
 {
-    public enum StateEnum
+    public enum State
     {
         Alabama,
         Alaska,

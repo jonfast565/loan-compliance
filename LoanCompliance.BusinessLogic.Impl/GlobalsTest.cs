@@ -4,7 +4,7 @@ using LoanConformance.Models.Api;
 
 namespace LoanConformance.BusinessLogic.Impl
 {
-    public class GlobalsTest : IConformanceProcessor
+    public class GlobalsTest : IComplianceProcessor
     {
         private readonly IDataAccess _dataAccess;
 
@@ -13,7 +13,7 @@ namespace LoanConformance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
+        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
             var globals = _dataAccess.GetGlobalRuleset();
             var applicableGlobalRule = globals.FirstOrDefault(x => x.State == query.State
@@ -21,10 +21,10 @@ namespace LoanConformance.BusinessLogic.Impl
                                                                    && x.MaximumLoanAmount <= query.LoanAmount);
 
             if (applicableGlobalRule == null)
-                return new ConformanceResult(
+                return new ComplianceResult(
                     $"Loan in state {query.State}, type {query.LoanType} does not require compliance testing");
 
-            return new ConformanceResult();
+            return new ComplianceResult();
         }
     }
 }
