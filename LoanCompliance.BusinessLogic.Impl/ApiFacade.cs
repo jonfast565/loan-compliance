@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LoanCompliance.Data;
 using LoanCompliance.Models.Api;
@@ -27,7 +26,13 @@ namespace LoanCompliance.BusinessLogic.Impl
             complianceResult = _processors
                 .Aggregate(complianceResult,
                     (current, check) =>
-                        current + check.ProcessConformanceStep(query));
+                    {
+                        if (current.Skip)
+                            return current;
+
+                        var step = check.ProcessConformanceStep(query);
+                        return current + step;
+                    });
             return complianceResult;
         }
     }

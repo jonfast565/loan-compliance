@@ -17,11 +17,16 @@ namespace LoanCompliance.BusinessLogic.Impl
         {
             var aprData = _dataAccess.GetAprData();
             var normalizedApr = query.AnnualPercentageRate / 100;
-            var aprRule = aprData.First(x =>
+            var aprRule = aprData.FirstOrDefault(x =>
                 x.LoanType == query.LoanType
                 && x.OccupancyType == query.OccupancyType
                 && x.State == query.State);
 
+            if (aprRule == null)
+                return new ComplianceResult(true, $"APR Test not run for loan type {query.LoanType} " +
+                                                  $"with occupancy {query.OccupancyType} " +
+                                                  $"in state {query.State}");
+            
             if (aprRule.AnnualRatePercentage > normalizedApr)
                 return new ComplianceResult(
                     $"{aprRule.AnnualRatePercentage}% > {normalizedApr}% " +

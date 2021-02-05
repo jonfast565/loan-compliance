@@ -25,6 +25,12 @@ namespace LoanCompliance.Models.Api
             Reasons = new List<string> {failure};
         }
 
+        public ComplianceResult(bool success, string reason)
+        {
+            Success = success;
+            Reasons = new List<string> {reason};
+        }
+
         [JsonIgnore]
         public bool Skip { get; set; }
 
@@ -44,7 +50,8 @@ namespace LoanCompliance.Models.Api
             return new()
             {
                 Success = a.Success && b.Success,
-                Reasons = a.Reasons.Concat(b.Reasons).ToList()
+                Reasons = a.Reasons.Concat(b.Reasons).ToList(),
+                Skip = a.Skip || b.Skip
             };
         }
     }
