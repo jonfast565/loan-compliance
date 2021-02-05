@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LoanConformance.Models.Data;
+﻿using LoanConformance.Models.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -16,7 +11,6 @@ namespace LoanConformance.Models.Api
         [JsonConverter(typeof(StringEnumConverter))]
         public LoanFeeTypeEnum LoanFeeType { get; set; }
 
-        [JsonRequired]
-        public decimal FeeCharged { get; set; }
+        [JsonRequired] public decimal FeeCharged { get; set; }
     }
 }

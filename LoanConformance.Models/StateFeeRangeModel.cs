@@ -1,4 +1,6 @@
-﻿namespace LoanConformance.Models.Data
+﻿using LoanConformance.Models.Enums;
+
+namespace LoanConformance.Models.Data
 {
     public class StateFeeRangeModel
     {

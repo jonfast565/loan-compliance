@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LoanConformance.Models;
 using LoanConformance.Models.Data;
+using LoanConformance.Models.Enums;
 
 namespace LoanConformance.Data.InMemory.Impl
 {
@@ -68,10 +68,14 @@ namespace LoanConformance.Data.InMemory.Impl
         public IEnumerable<StateFeeModel> GetFeeData()
         {
             var result = new List<StateFeeModel>()
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Virginia, LoanFeeTypeEnum.FloodCertification, LoanFeeTypeEnum.Processing, LoanFeeTypeEnum.Settlement))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Maryland, LoanFeeTypeEnum.Application, LoanFeeTypeEnum.CreditReport))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.California, LoanFeeTypeEnum.Application, LoanFeeTypeEnum.Settlement))
-                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Florida, LoanFeeTypeEnum.Application, LoanFeeTypeEnum.FloodCertification, LoanFeeTypeEnum.TitleSearch));
+                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Virginia, LoanFeeTypeEnum.FloodCertification,
+                    LoanFeeTypeEnum.Processing, LoanFeeTypeEnum.Settlement))
+                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Maryland, LoanFeeTypeEnum.Application,
+                    LoanFeeTypeEnum.CreditReport))
+                .Concat(GetStateFeeDataForFeeTypes(StateEnum.California, LoanFeeTypeEnum.Application,
+                    LoanFeeTypeEnum.Settlement))
+                .Concat(GetStateFeeDataForFeeTypes(StateEnum.Florida, LoanFeeTypeEnum.Application,
+                    LoanFeeTypeEnum.FloodCertification, LoanFeeTypeEnum.TitleSearch));
             return result;
         }
 
@@ -89,16 +93,46 @@ namespace LoanConformance.Data.InMemory.Impl
         {
             var result = new List<StateFeeRangeModel>
             {
-                new() { State = StateEnum.Virginia, LowerValue = 0, UpperValue = decimal.MaxValue, PercentageCharged = 0.07m },
-                new() { State = StateEnum.Maryland, LowerValue = 0, UpperValue = 200_000.00m, PercentageCharged = 0.04m },
-                new() { State = StateEnum.Maryland, LowerValue = 200_000.00m, UpperValue = decimal.MaxValue, PercentageCharged = 0.06m },
-                new() { State = StateEnum.California, LowerValue = 0, UpperValue = 50_000.00m, PercentageCharged = 0.03m },
-                new() { State = StateEnum.California, LowerValue = 50_000.00m, UpperValue = 150_000.00m, PercentageCharged = 0.04m },
-                new() { State = StateEnum.California, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue, PercentageCharged = 0.05m },
-                new() { State = StateEnum.Florida, LowerValue = 0, UpperValue = 20_000.00m, PercentageCharged = 0.06m },
-                new() { State = StateEnum.Florida, LowerValue = 20_000.00m, UpperValue = 75_000.00m, PercentageCharged = 0.08m },
-                new() { State = StateEnum.Florida, LowerValue = 75_000.00m, UpperValue = 150_000.00m, PercentageCharged = 0.09m },
-                new() { State = StateEnum.Florida, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue, PercentageCharged = 0.1m },
+                new()
+                {
+                    State = StateEnum.Virginia, LowerValue = 0, UpperValue = decimal.MaxValue, PercentageCharged = 0.07m
+                },
+                new() {State = StateEnum.Maryland, LowerValue = 0, UpperValue = 200_000.00m, PercentageCharged = 0.04m},
+                new()
+                {
+                    State = StateEnum.Maryland, LowerValue = 200_000.00m, UpperValue = decimal.MaxValue,
+                    PercentageCharged = 0.06m
+                },
+                new()
+                {
+                    State = StateEnum.California, LowerValue = 0, UpperValue = 50_000.00m, PercentageCharged = 0.03m
+                },
+                new()
+                {
+                    State = StateEnum.California, LowerValue = 50_000.00m, UpperValue = 150_000.00m,
+                    PercentageCharged = 0.04m
+                },
+                new()
+                {
+                    State = StateEnum.California, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
+                    PercentageCharged = 0.05m
+                },
+                new() {State = StateEnum.Florida, LowerValue = 0, UpperValue = 20_000.00m, PercentageCharged = 0.06m},
+                new()
+                {
+                    State = StateEnum.Florida, LowerValue = 20_000.00m, UpperValue = 75_000.00m,
+                    PercentageCharged = 0.08m
+                },
+                new()
+                {
+                    State = StateEnum.Florida, LowerValue = 75_000.00m, UpperValue = 150_000.00m,
+                    PercentageCharged = 0.09m
+                },
+                new()
+                {
+                    State = StateEnum.Florida, LowerValue = 150_000.00m, UpperValue = decimal.MaxValue,
+                    PercentageCharged = 0.1m
+                }
             };
             return result;
         }
@@ -161,7 +195,8 @@ namespace LoanConformance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<StateFeeModel> GetStateFeeDataForFeeTypes(StateEnum state, params LoanFeeTypeEnum[] loanFeeTypes)
+        private static IEnumerable<StateFeeModel> GetStateFeeDataForFeeTypes(StateEnum state,
+            params LoanFeeTypeEnum[] loanFeeTypes)
         {
             var stateFeeRanges = GetStateFeeRanges().ToList();
             var result = loanFeeTypes

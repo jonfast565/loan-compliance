@@ -1,4 +1,4 @@
-﻿namespace LoanConformance.Models.Data
+﻿namespace LoanConformance.Models.Enums
 {
     public enum StateEnum
     {
@@ -52,6 +52,7 @@
         WestVirginia,
         Wisconsin,
         Wyoming,
+
         // not states, but could be added later
         PuertoRico,
         DistrictOfColumbia

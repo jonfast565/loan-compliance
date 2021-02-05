@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LoanConformance.Models.Enums;
 
 namespace LoanConformance.Models.Data
 {

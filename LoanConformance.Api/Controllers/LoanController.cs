@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using LoanConformance.BusinessLogic;
 using LoanConformance.BusinessLogic.Impl;
 using LoanConformance.Data;
-using LoanConformance.Models;
-using LoanConformance.Models.Query;
+using LoanConformance.Models.Api;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace LoanConformance.Api.Controllers
 {
@@ -25,6 +22,7 @@ namespace LoanConformance.Api.Controllers
             _logger = logger;
             _processors = new List<IConformanceProcessor>
             {
+                new ValidationTest(),
                 new GlobalsTest(dataAccess),
                 new AprTest(dataAccess),
                 new FeeTest(dataAccess)
@@ -35,30 +33,12 @@ namespace LoanConformance.Api.Controllers
         [Route("process")]
         public ConformanceResult ProcessLoan(ConformanceQuery query)
         {
-            var globalTest = _processors
-                .First(x => x.ChecksCompliance)
-                .ProcessConformanceData(query);
-
-            if (globalTest.ComplianceCheckNeeded)
-            {
-                var complianceChecks = _processors
-                    .Where(x => !x.ChecksCompliance);
-                var complianceResult = new ConformanceResult();
-
-                complianceResult = complianceChecks
-                    .Aggregate(complianceResult, 
-                        (current, check) => 
-                            current + check.ProcessConformanceData(query));
-
-                return complianceResult;
-            }
-
-            return new ConformanceResult
-            {
-                ComplianceCheckNeeded = true,
-                Complies = false,
-                FailureReasons = globalTest.FailureReasons
-            };
+            var complianceResult = new ConformanceResult();
+            complianceResult = _processors
+                .Aggregate(complianceResult,
+                    (current, check) =>
+                        current + check.ProcessConformanceStep(query));
+            return complianceResult;
         }
     }
 }

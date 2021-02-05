@@ -1,8 +1,4 @@
-﻿using LoanConformance.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using LoanConformance.Models.Data;
 
 namespace LoanConformance.Data

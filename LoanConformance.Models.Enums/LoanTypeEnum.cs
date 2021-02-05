@@ -1,6 +1,5 @@
-﻿namespace LoanConformance.Models.Data
+﻿namespace LoanConformance.Models.Enums
 {
-    
     public enum LoanTypeEnum
     {
         Conventional,

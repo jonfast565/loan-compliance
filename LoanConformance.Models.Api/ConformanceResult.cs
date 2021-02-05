@@ -2,16 +2,30 @@
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace LoanConformance.Models.Query
+namespace LoanConformance.Models.Api
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class ConformanceResult
     {
-        [JsonRequired]
-        public bool ComplianceCheckNeeded { get; set; }
-        
-        [JsonRequired]
-        public bool Complies { get; set; }
+        public ConformanceResult()
+        {
+            Success = true;
+            FailureReasons = new List<string>();
+        }
+
+        public ConformanceResult(List<string> failures)
+        {
+            Success = false;
+            FailureReasons = failures;
+        }
+
+        public ConformanceResult(string failure)
+        {
+            Success = false;
+            FailureReasons = new List<string> {failure};
+        }
+
+        [JsonRequired] public bool Success { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]
         public List<string> FailureReasons { get; set; }
@@ -20,8 +34,7 @@ namespace LoanConformance.Models.Query
         {
             return new()
             {
-                ComplianceCheckNeeded = a.ComplianceCheckNeeded && b.ComplianceCheckNeeded,
-                Complies = a.Complies && b.Complies,
+                Success = a.Success && b.Success,
                 FailureReasons = a.FailureReasons.Concat(b.FailureReasons).ToList()
             };
         }

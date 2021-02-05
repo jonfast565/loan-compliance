@@ -1,17 +1,11 @@
-﻿using LoanConformance.Models.Query;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using LoanConformance.Data;
+using LoanConformance.Models.Api;
 
 namespace LoanConformance.BusinessLogic.Impl
 {
     public class AprTest : IConformanceProcessor
     {
-        public bool ChecksCompliance { get; set; } = false;
-
         private IDataAccess _dataAccess;
 
         public AprTest(IDataAccess dataAccess)
@@ -19,7 +13,7 @@ namespace LoanConformance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ConformanceResult ProcessConformanceData(ConformanceQuery query)
+        public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
         {
             throw new NotImplementedException();
         }
