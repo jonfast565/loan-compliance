@@ -13,8 +13,6 @@ namespace LoanConformance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public bool GlobalCheck { get; set; } = true;
-
         public ConformanceResult ProcessConformanceStep(ConformanceQuery query)
         {
             var globals = _dataAccess.GetGlobalRuleset();

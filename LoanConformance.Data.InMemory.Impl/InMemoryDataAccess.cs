@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using LoanConformance.Models.Data;
 using LoanConformance.Models.Enums;
@@ -85,7 +86,9 @@ namespace LoanConformance.Data.InMemory.Impl
                 .Concat(GetGlobalRulesetForLoanTypes(StateEnum.NewYork, 750_000.00m, LoanTypeEnum.Conventional))
                 .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Virginia, decimal.MaxValue, LoanTypeEnum.VA,
                     LoanTypeEnum.Conventional, LoanTypeEnum.FHA))
-                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Maryland, 400_000.00m));
+                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Maryland, 400_000.00m))
+                .Concat(GetGlobalRulesetForLoanTypes(StateEnum.Florida, decimal.MaxValue, LoanTypeEnum.Conventional,
+                    LoanTypeEnum.VA));
             return result;
         }
 

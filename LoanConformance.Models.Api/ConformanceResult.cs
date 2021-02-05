@@ -10,32 +10,32 @@ namespace LoanConformance.Models.Api
         public ConformanceResult()
         {
             Success = true;
-            FailureReasons = new List<string>();
+            Reasons = new List<string>();
         }
 
         public ConformanceResult(List<string> failures)
         {
             Success = false;
-            FailureReasons = failures;
+            Reasons = failures;
         }
 
         public ConformanceResult(string failure)
         {
             Success = false;
-            FailureReasons = new List<string> {failure};
+            Reasons = new List<string> {failure};
         }
 
         [JsonRequired] public bool Success { get; set; }
 
         [JsonProperty(Required = Required.AllowNull)]
-        public List<string> FailureReasons { get; set; }
+        public List<string> Reasons { get; set; }
 
         public static ConformanceResult operator +(ConformanceResult a, ConformanceResult b)
         {
             return new()
             {
                 Success = a.Success && b.Success,
-                FailureReasons = a.FailureReasons.Concat(b.FailureReasons).ToList()
+                Reasons = a.Reasons.Concat(b.Reasons).ToList()
             };
         }
     }
