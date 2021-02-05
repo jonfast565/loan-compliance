@@ -65,9 +65,9 @@ namespace LoanCompliance.Data.InMemory.Impl
             return aprData;
         }
 
-        public IEnumerable<StateFeeModel> GetFeeData()
+        public IEnumerable<StateApplicableFeeModel> GetApplicableFeeData()
         {
-            var result = new List<StateFeeModel>()
+            var result = new List<StateApplicableFeeModel>()
                 .Concat(GetStateFeeDataForFeeTypes(State.Virginia, LoanFeeType.FloodCertification,
                     LoanFeeType.Processing, LoanFeeType.Settlement))
                 .Concat(GetStateFeeDataForFeeTypes(State.Maryland, LoanFeeType.Application,
@@ -91,7 +91,7 @@ namespace LoanCompliance.Data.InMemory.Impl
             return result;
         }
 
-        public static IEnumerable<StateFeeRangeModel> GetStateFeeRanges()
+        public IEnumerable<StateFeeRangeModel> GetFeeRangeData()
         {
             var result = new List<StateFeeRangeModel>
             {
@@ -197,16 +197,14 @@ namespace LoanCompliance.Data.InMemory.Impl
             return result;
         }
 
-        private static IEnumerable<StateFeeModel> GetStateFeeDataForFeeTypes(State state,
+        private static IEnumerable<StateApplicableFeeModel> GetStateFeeDataForFeeTypes(State state,
             params LoanFeeType[] loanFeeTypes)
         {
-            var stateFeeRanges = GetStateFeeRanges().ToList();
             var result = loanFeeTypes
-                .Select(loanFeeType => new StateFeeModel
+                .Select(loanFeeType => new StateApplicableFeeModel
                 {
                     State = state,
-                    LoanFeeType = loanFeeType,
-                    MaxChargeFeeRanges = stateFeeRanges.Where(x => x.State == state)
+                    LoanFeeType = loanFeeType
                 });
             return result;
         }

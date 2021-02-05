@@ -6,7 +6,8 @@ namespace LoanCompliance.Data
     public interface IDataAccess
     {
         IEnumerable<StateAprModel> GetAprData();
-        IEnumerable<StateFeeModel> GetFeeData();
+        IEnumerable<StateApplicableFeeModel> GetApplicableFeeData();
+        IEnumerable<StateFeeRangeModel> GetFeeRangeData();
         IEnumerable<GlobalRulesetModel> GetGlobalRulesetData();
     }
 }

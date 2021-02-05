@@ -7,10 +7,9 @@ using LoanCompliance.Models.Enums;
 
 namespace LoanCompliance.Models.Data
 {
-    public class FeeJoiner
+    public class ApplicableFeeStub
     {
         public decimal FeeCharged { get; set; } 
-        public LoanFeeType LoanFeeType { get; set; } 
-        public IEnumerable<StateFeeRangeModel> MaxChargeFeeRanges { get; set; }
+        public LoanFeeType LoanFeeType { get; set; }
     }
 }

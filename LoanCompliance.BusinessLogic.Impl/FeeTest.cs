@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LoanCompliance.Data;
 using LoanCompliance.Models.Api;
@@ -18,27 +17,36 @@ namespace LoanCompliance.BusinessLogic.Impl
 
         public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
         {
-            var fees = _dataAccess.GetFeeData();
+            var applicableFeeData = _dataAccess.GetApplicableFeeData();
+            var feeRanges = _dataAccess.GetFeeRangeData();
 
             var applicableFees =
                 (from allocations in query.FeeAllocations
-                join feeRecords in fees
-                    on new {allocations.LoanFeeType, query.State}
-                    equals new {feeRecords.LoanFeeType, feeRecords.State}
-                select new FeeJoiner
+                    join feeRecords in applicableFeeData
+                        on new {allocations.LoanFeeType, query.State}
+                        equals new {feeRecords.LoanFeeType, feeRecords.State}
+                    select new ApplicableFeeStub
+                    {
+                        FeeCharged = allocations.FeeCharged,
+                        LoanFeeType = allocations.LoanFeeType
+                    }).ToList();
+
+            if (!applicableFees.Any())
+                return new ComplianceResult(true,
+                    $"No applicable fees found for type {query.LoanType} in state {query.State}, test not run");
+
+            var totalApplicableFees = applicableFees.Sum(applicableFee => applicableFee.FeeCharged);
+            var feeRange = feeRanges.First(x => x.State == query.State
+                                                && query.LoanAmount <= x.UpperValue &&
+                                                query.LoanAmount > x.LowerValue);
+
+            return totalApplicableFees > feeRange.PercentageCharged * query.LoanAmount
+                ? new ComplianceResult(new List<string>
                 {
-                    FeeCharged = allocations.FeeCharged,
-                    LoanFeeType = allocations.LoanFeeType,
-                    MaxChargeFeeRanges = feeRecords.MaxChargeFeeRanges
-                }).ToList();
-
-            var issues = new List<string>();
-            var totalFees = applicableFees.Sum(applicableFee => applicableFee.FeeCharged);
-            var feeLimit = applicableFees.SelectMany(x => x.MaxChargeFeeRanges);
-
-            // TODO: BROKEN, data model is messed up, must finish tomorrow.
-
-            return issues.Any() ? new ComplianceResult(issues) : new ComplianceResult();
+                    $"Applicable fees charged ${totalApplicableFees} is greater than {feeRange.PercentageCharged * 100}% of the total amount",
+                    $"Loan amount {query.LoanAmount} at {feeRange.PercentageCharged * 100}% = ${feeRange.PercentageCharged * query.LoanAmount}"
+                })
+                : new ComplianceResult();
         }
     }
 }
