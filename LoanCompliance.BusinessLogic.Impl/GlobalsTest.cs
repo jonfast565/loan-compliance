@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using LoanCompliance.Data;
 using LoanCompliance.Models.Api;
 
@@ -21,13 +20,16 @@ namespace LoanCompliance.BusinessLogic.Impl
                                                                    && x.ApplicableLoanType == query.LoanType);
 
             if (applicableGlobalRule == null)
-            {
-                return new ComplianceResult($"Loan in state {query.State}, type {query.LoanType} does not require compliance testing") {Skip = true};
-            }
+                return new ComplianceResult(new TestResult("GlobalsTest", true, 
+                        $"Loan in state {query.State}, type {query.LoanType} does not require compliance testing"))
+                    {Skip = true};
 
-            if (applicableGlobalRule.MaximumLoanAmount >= query.LoanAmount) return new ComplianceResult();
-                return new ComplianceResult($"Maximum loan amount is {applicableGlobalRule.MaximumLoanAmount} for this state, yours is {query.LoanAmount}. " +
-                                        "This amount is not eligible for compliance testing.") {Skip = true};
+            if (applicableGlobalRule.MaximumLoanAmount >= query.LoanAmount) 
+                return new ComplianceResult(new TestResult("GlobalsTest", true, "Passed"));
+
+            return new ComplianceResult(new TestResult("GlobalsTest", false, 
+                $"Maximum loan amount is {applicableGlobalRule.MaximumLoanAmount} for this state, yours is {query.LoanAmount}. " +
+                "This amount is not eligible for compliance testing.")) {Skip = true};
         }
     }
 }

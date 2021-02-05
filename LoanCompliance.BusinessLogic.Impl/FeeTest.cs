@@ -32,8 +32,8 @@ namespace LoanCompliance.BusinessLogic.Impl
                     }).ToList();
 
             if (!applicableFees.Any())
-                return new ComplianceResult(true,
-                    $"No applicable fees for this loan in state {query.State}, test not run");
+                return new ComplianceResult(new TestResult("FeeTest", false,
+                    $"No applicable fees for this loan in state {query.State}, test not run"));
 
             var totalApplicableFees = applicableFees.Sum(applicableFee => applicableFee.FeeCharged);
             var feeRange = feeRanges.First(x => x.State == query.State
@@ -41,12 +41,11 @@ namespace LoanCompliance.BusinessLogic.Impl
                                                 query.LoanAmount > x.LowerValue);
 
             return totalApplicableFees > feeRange.PercentageCharged * query.LoanAmount
-                ? new ComplianceResult(new List<string>
-                {
+                ? new ComplianceResult(new TestResult("FeesTest", false,
                     $"Applicable fees charged ${totalApplicableFees} is greater than {feeRange.PercentageCharged * 100}% of the total amount",
                     $"Loan amount {query.LoanAmount} at {feeRange.PercentageCharged * 100}% = ${feeRange.PercentageCharged * query.LoanAmount}"
-                })
-                : new ComplianceResult();
+                ))
+                : new ComplianceResult(new TestResult("FeesTest", true, "Passed"));
         }
     }
 }

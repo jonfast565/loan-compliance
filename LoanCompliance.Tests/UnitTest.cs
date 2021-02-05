@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using LoanCompliance.BusinessLogic;
 using LoanCompliance.BusinessLogic.Impl;
 using LoanCompliance.Data;
@@ -21,7 +20,7 @@ namespace LoanCompliance.Tests
         public TestContext TestContext { get; set; }
 
         /// <summary>
-        /// Test valid APR inputs
+        ///     Test valid APR inputs
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -59,7 +58,7 @@ namespace LoanCompliance.Tests
         }
 
         /// <summary>
-        /// Test invalid APR inputs
+        ///     Test invalid APR inputs
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -96,7 +95,7 @@ namespace LoanCompliance.Tests
         }
 
         /// <summary>
-        /// Test valid fee inputs with two fees
+        ///     Test valid fee inputs with two fees
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -108,21 +107,28 @@ namespace LoanCompliance.Tests
         /// <param name="feeType2"></param>
         /// <param name="feeCharged2"></param>
         [DataTestMethod]
-        [DataRow(50000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 750, LoanFeeType.Settlement, 750)]
-        [DataRow(150000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 3000, LoanFeeType.Settlement, 3000)]
-        [DataRow(151000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 0, LoanFeeType.Settlement, 0)]
-        [DataRow(150000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 3000, LoanFeeType.Settlement, 3000)]
-        [DataRow(151000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 0, LoanFeeType.Settlement, 0)]
+        [DataRow(50000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 750, LoanFeeType.Settlement, 750)]
+        [DataRow(150000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 3000, LoanFeeType.Settlement, 3000)]
+        [DataRow(151000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 0, LoanFeeType.Settlement, 0)]
+        [DataRow(150000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 3000, LoanFeeType.Settlement, 3000)]
+        [DataRow(151000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 0, LoanFeeType.Settlement, 0)]
         public void TestTwoValidFeeComplianceInputs(int loanAmount, int apr, State state, LoanType loanType,
-            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2)
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2)
         {
-            var processed = BuildFeesTest2(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1, feeType2, feeCharged2);
+            var processed = BuildFeesTest2(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1,
+                feeType2, feeCharged2);
             PrintReasons(processed);
             Assert.AreEqual(true, processed.Success);
         }
 
         /// <summary>
-        /// Test valid fee inputs with three fees
+        ///     Test valid fee inputs with three fees
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -136,19 +142,24 @@ namespace LoanCompliance.Tests
         /// <param name="feeType3"></param>
         /// <param name="feeCharged3"></param>
         [DataTestMethod]
-        [DataRow(50000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 750, LoanFeeType.Processing, 750, LoanFeeType.Settlement, 10)]
-        [DataRow(150000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 3000, LoanFeeType.Processing, 3000, LoanFeeType.Settlement, 10)]
-        [DataRow(151000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 0, LoanFeeType.Processing, 0, LoanFeeType.Settlement, 10)]
+        [DataRow(50000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 750, LoanFeeType.Processing, 750, LoanFeeType.Settlement, 10)]
+        [DataRow(150000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 3000, LoanFeeType.Processing, 3000, LoanFeeType.Settlement, 10)]
+        [DataRow(151000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 0, LoanFeeType.Processing, 0, LoanFeeType.Settlement, 10)]
         public void TestThreeValidFeeComplianceInputs(int loanAmount, int apr, State state, LoanType loanType,
-            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2, LoanFeeType feeType3, int feeCharged3)
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2, LoanFeeType feeType3, int feeCharged3)
         {
-            var processed = BuildFeesTest3(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1, feeType2, feeCharged2, feeType3, feeCharged3);
+            var processed = BuildFeesTest3(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1,
+                feeType2, feeCharged2, feeType3, feeCharged3);
             PrintReasons(processed);
             Assert.AreEqual(true, processed.Success);
         }
 
         /// <summary>
-        /// Test invalid inputs with two fees
+        ///     Test invalid inputs with two fees
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -160,21 +171,28 @@ namespace LoanCompliance.Tests
         /// <param name="feeType2"></param>
         /// <param name="feeCharged2"></param>
         [DataTestMethod]
-        [DataRow(50000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 75044, LoanFeeType.Settlement, 750)]
-        [DataRow(150000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 304400, LoanFeeType.Settlement, 3000)]
-        [DataRow(151000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 345345, LoanFeeType.Settlement, 0)]
-        [DataRow(150000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 304400, LoanFeeType.Settlement, 3000)]
-        [DataRow(151000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.Application, 444440, LoanFeeType.Settlement, 4444440)]
+        [DataRow(50000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 75044, LoanFeeType.Settlement, 750)]
+        [DataRow(150000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 304400, LoanFeeType.Settlement, 3000)]
+        [DataRow(151000, 6, State.California, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 345345, LoanFeeType.Settlement, 0)]
+        [DataRow(150000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 304400, LoanFeeType.Settlement, 3000)]
+        [DataRow(151000, 4, State.Maryland, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.Application, 444440, LoanFeeType.Settlement, 4444440)]
         public void TestTwoInvalidFeeComplianceInputs(int loanAmount, int apr, State state, LoanType loanType,
-            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2)
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2)
         {
-            var processed = BuildFeesTest2(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1, feeType2, feeCharged2);
+            var processed = BuildFeesTest2(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1,
+                feeType2, feeCharged2);
             PrintReasons(processed);
             Assert.AreEqual(false, processed.Success);
         }
 
         /// <summary>
-        /// Test invalid inputs with three fees
+        ///     Test invalid inputs with three fees
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -188,19 +206,24 @@ namespace LoanCompliance.Tests
         /// <param name="feeType3"></param>
         /// <param name="feeCharged3"></param>
         [DataTestMethod]
-        [DataRow(50000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 750000, LoanFeeType.Processing, 750, LoanFeeType.Settlement, 10)]
-        [DataRow(150000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 3000, LoanFeeType.Processing, 300000, LoanFeeType.Settlement, 10)]
-        [DataRow(151000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy, LoanFeeType.FloodCertification, 100888, LoanFeeType.Processing, 0, LoanFeeType.Settlement, 10)]
+        [DataRow(50000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 750000, LoanFeeType.Processing, 750, LoanFeeType.Settlement, 10)]
+        [DataRow(150000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 3000, LoanFeeType.Processing, 300000, LoanFeeType.Settlement, 10)]
+        [DataRow(151000, 6, State.Virginia, LoanType.Conventional, LoanOccupancyType.PrimaryOccupancy,
+            LoanFeeType.FloodCertification, 100888, LoanFeeType.Processing, 0, LoanFeeType.Settlement, 10)]
         public void TestThreeInvalidFeeComplianceInputs(int loanAmount, int apr, State state, LoanType loanType,
-            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2, LoanFeeType feeType3, int feeCharged3)
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2, LoanFeeType feeType3, int feeCharged3)
         {
-            var processed = BuildFeesTest3(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1, feeType2, feeCharged2, feeType3, feeCharged3);
+            var processed = BuildFeesTest3(loanAmount, apr, state, loanType, occupancyType, feeType1, feeCharged1,
+                feeType2, feeCharged2, feeType3, feeCharged3);
             PrintReasons(processed);
             Assert.AreEqual(false, processed.Success);
         }
 
         /// <summary>
-        /// Test valid globals
+        ///     Test valid globals
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -221,7 +244,7 @@ namespace LoanCompliance.Tests
         }
 
         /// <summary>
-        /// Test invalid globals
+        ///     Test invalid globals
         /// </summary>
         /// <param name="loanAmount"></param>
         /// <param name="apr"></param>
@@ -240,38 +263,72 @@ namespace LoanCompliance.Tests
             Assert.AreEqual(false, processed.Success);
         }
 
-        #region Builder Methods 
+        [TestMethod]
+        public void ComprehensiveApplicationHappyPathTest()
+        {
+            var result = BuildAndRunComplianceTest(100000, 3.8m, State.Virginia,
+                LoanType.Conventional,
+                LoanOccupancyType.PrimaryOccupancy, new List<LoanFeeAllocation>
+                {
+                    new() {FeeCharged = 3800, LoanFeeType = LoanFeeType.Processing}
+                },
+                da => new ApiFacade(da));
+            PrintReasons(result);
+            Assert.AreEqual(true, result.Success);
+        }
 
-        private static ComplianceResult BuildGlobalsTest(int loanAmount, int apr, State state, LoanType loanType, LoanOccupancyType occupancyType)
+        [TestMethod]
+        public void ComprehensiveApplicationSadPathTest()
+        {
+            var result = BuildAndRunComplianceTest(100000, 3.8m, State.Virginia,
+                LoanType.Conventional,
+                LoanOccupancyType.PrimaryOccupancy, new List<LoanFeeAllocation>
+                {
+                    new() {FeeCharged = 7100, LoanFeeType = LoanFeeType.Processing}
+                },
+                da => new ApiFacade(da));
+            PrintReasons(result);
+            Assert.AreEqual(false, result.Success);
+        }
+
+        #region Builder Methods
+
+        private static ComplianceResult BuildGlobalsTest(int loanAmount, int apr, State state, LoanType loanType,
+            LoanOccupancyType occupancyType)
         {
             return BuildAndRunComplianceTest(Convert.ToDecimal(loanAmount), Convert.ToDecimal(apr), state,
                 loanType, occupancyType, new List<LoanFeeAllocation>(), da => new GlobalsTest(da));
         }
 
-        private static ComplianceResult BuildAprTest(int loanAmount, int apr, State state, LoanType loanType, LoanOccupancyType occupancyType)
+        private static ComplianceResult BuildAprTest(int loanAmount, int apr, State state, LoanType loanType,
+            LoanOccupancyType occupancyType)
         {
             return BuildAndRunComplianceTest(Convert.ToDecimal(loanAmount), Convert.ToDecimal(apr), state,
                 loanType, occupancyType, new List<LoanFeeAllocation>(), da => new AprTest(da));
         }
 
-        private static ComplianceResult BuildFeesTest2(int loanAmount, int apr, State state, LoanType loanType, LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2)
+        private static ComplianceResult BuildFeesTest2(int loanAmount, int apr, State state, LoanType loanType,
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2)
         {
             return BuildAndRunComplianceTest(Convert.ToDecimal(loanAmount), Convert.ToDecimal(apr), state,
-                loanType, occupancyType, new List<LoanFeeAllocation>()
+                loanType, occupancyType, new List<LoanFeeAllocation>
                 {
-                    new() { FeeCharged = Convert.ToDecimal(feeCharged1), LoanFeeType = feeType1 },
-                    new() { FeeCharged = Convert.ToDecimal(feeCharged2), LoanFeeType = feeType2 },
+                    new() {FeeCharged = Convert.ToDecimal(feeCharged1), LoanFeeType = feeType1},
+                    new() {FeeCharged = Convert.ToDecimal(feeCharged2), LoanFeeType = feeType2}
                 }, da => new FeeTest(da));
         }
 
-        private static ComplianceResult BuildFeesTest3(int loanAmount, int apr, State state, LoanType loanType, LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2, int feeCharged2, LoanFeeType feeType3, int feeCharged3)
+        private static ComplianceResult BuildFeesTest3(int loanAmount, int apr, State state, LoanType loanType,
+            LoanOccupancyType occupancyType, LoanFeeType feeType1, int feeCharged1, LoanFeeType feeType2,
+            int feeCharged2, LoanFeeType feeType3, int feeCharged3)
         {
             return BuildAndRunComplianceTest(Convert.ToDecimal(loanAmount), Convert.ToDecimal(apr), state,
-                loanType, occupancyType, new List<LoanFeeAllocation>()
+                loanType, occupancyType, new List<LoanFeeAllocation>
                 {
-                    new() { FeeCharged = Convert.ToDecimal(feeCharged1), LoanFeeType = feeType1 },
-                    new() { FeeCharged = Convert.ToDecimal(feeCharged2), LoanFeeType = feeType2 },
-                    new() { FeeCharged = Convert.ToDecimal(feeCharged3), LoanFeeType = feeType3 }
+                    new() {FeeCharged = Convert.ToDecimal(feeCharged1), LoanFeeType = feeType1},
+                    new() {FeeCharged = Convert.ToDecimal(feeCharged2), LoanFeeType = feeType2},
+                    new() {FeeCharged = Convert.ToDecimal(feeCharged3), LoanFeeType = feeType3}
                 }, da => new FeeTest(da));
         }
 
@@ -297,7 +354,9 @@ namespace LoanCompliance.Tests
 
         private void PrintReasons(ComplianceResult processed)
         {
-            foreach (var reason in processed.Reasons) TestContext.WriteLine(reason);
+            foreach (var result in processed.Results)
+                foreach (var text in result.Messages) 
+                    TestContext.WriteLine(text);
         }
 
         #endregion

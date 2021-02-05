@@ -85,10 +85,12 @@ namespace LoanCompliance.Data.InMemory.Impl
                 .Concat(GetGlobalRulesetForLoanTypes(State.NewYork, 750_000.00m, LoanType.Conventional))
                 .Concat(GetGlobalRulesetForLoanTypes(State.Virginia, decimal.MaxValue, LoanType.VA,
                     LoanType.Conventional, LoanType.FHA))
-                .Concat(GetGlobalRulesetForLoanTypes(State.Maryland, 400_000.00m, LoanType.VA, LoanType.FHA, LoanType.Conventional))
+                .Concat(GetGlobalRulesetForLoanTypes(State.Maryland, 400_000.00m, LoanType.VA, LoanType.FHA,
+                    LoanType.Conventional))
                 .Concat(GetGlobalRulesetForLoanTypes(State.Florida, decimal.MaxValue, LoanType.Conventional,
                     LoanType.VA))
-                .Concat(GetGlobalRulesetForLoanTypes(State.California, 600_000.00m, LoanType.Conventional, LoanType.FHA, LoanType.VA));
+                .Concat(GetGlobalRulesetForLoanTypes(State.California, 600_000.00m, LoanType.Conventional, LoanType.FHA,
+                    LoanType.VA));
             return result;
         }
 

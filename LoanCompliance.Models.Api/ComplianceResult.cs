@@ -9,38 +9,28 @@ namespace LoanCompliance.Models.Api
     {
         public ComplianceResult()
         {
-            Success = true;
-            Reasons = new List<string>();
+            Results = new List<TestResult>();
         }
 
-        public ComplianceResult(List<string> failures)
+        public ComplianceResult(List<TestResult> failures)
         {
-            Success = false;
-            Reasons = failures;
+            Results = failures;
         }
 
-        public ComplianceResult(string failure)
+        public ComplianceResult(TestResult failure)
         {
-            Success = false;
-            Reasons = new List<string> {failure};
+            Results = new List<TestResult> {failure};
         }
 
-        public ComplianceResult(bool success, string reason)
-        {
-            Success = success;
-            Reasons = new List<string> {reason};
-        }
+        [JsonIgnore] public bool Skip { get; set; }
 
-        [JsonIgnore]
-        public bool Skip { get; set; }
-
-        [JsonRequired] public bool Success { get; set; }
+        [JsonRequired] public bool Success => Results.All(x => x.Passed);
 
         [JsonProperty(Required = Required.AllowNull)]
-        public List<string> Reasons { get; set; }
+        public List<TestResult> Results { get; set; }
 
         /// <summary>
-        /// Allows us to use LINQ to aggregate results
+        ///     Allows us to use LINQ to aggregate results
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -49,8 +39,7 @@ namespace LoanCompliance.Models.Api
         {
             return new()
             {
-                Success = a.Success && b.Success,
-                Reasons = a.Reasons.Concat(b.Reasons).ToList(),
+                Results = a.Results.Concat(b.Results).ToList(),
                 Skip = a.Skip || b.Skip
             };
         }
