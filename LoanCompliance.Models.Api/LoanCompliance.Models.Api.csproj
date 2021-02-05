@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoanConformance.Models.Enums\LoanConformance.Models.Enums.csproj" />
+    <ProjectReference Include="..\LoanCompliance.Models.Enums\LoanCompliance.Models.Enums.csproj" />
   </ItemGroup>
 
 </Project>

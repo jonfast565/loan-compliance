@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LoanConformance.Models.Enums\LoanConformance.Models.Enums.csproj" />
+    <ProjectReference Include="..\LoanCompliance.Models.Api\LoanCompliance.Models.Api.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LoanCompliance.Data\LoanCompliance.Data.csproj" />
+    <ProjectReference Include="..\LoanCompliance.Models\LoanCompliance.Models.Data.csproj" />
+  </ItemGroup>
+
+</Project>

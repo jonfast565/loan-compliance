@@ -33,7 +33,7 @@ namespace LoanConformance.BusinessLogic.Impl
                 return new ConformanceResult(
                     $"{aprRule.AnnualRatePercentage}% > {normalizedApr}% " +
                     $"maximum for {query.LoanType} in {query.State} " +
-                    $"with occupancy of {query.OccupancyType}");
+                    $"with {query.OccupancyType}");
             }
             return new ConformanceResult();
         }
