@@ -13,7 +13,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
+        public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var aprData = _dataAccess.GetAprData();
             var normalizedApr = query.AnnualPercentageRate / 100;

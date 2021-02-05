@@ -15,7 +15,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
+        public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var applicableFeeData = _dataAccess.GetApplicableFeeData();
             var feeRanges = _dataAccess.GetFeeRangeData();

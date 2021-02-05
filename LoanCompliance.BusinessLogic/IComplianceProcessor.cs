@@ -4,6 +4,6 @@ namespace LoanCompliance.BusinessLogic
 {
     public interface IComplianceProcessor
     {
-        ComplianceResult ProcessConformanceStep(ComplianceQuery query);
+        ComplianceResult ProcessComplianceStep(ComplianceQuery query);
     }
 }

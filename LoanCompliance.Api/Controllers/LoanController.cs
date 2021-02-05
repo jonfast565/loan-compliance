@@ -23,7 +23,7 @@ namespace LoanCompliance.Api.Controllers
         [Route("process")]
         public ComplianceResult ProcessLoan(ComplianceQuery query)
         {
-            var complianceResult = _processor.ProcessConformanceStep(query);
+            var complianceResult = _processor.ProcessComplianceStep(query);
             return complianceResult;
         }
     }

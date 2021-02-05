@@ -14,7 +14,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
-        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
+        public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var globals = _dataAccess.GetGlobalRulesetData();
             var applicableGlobalRule = globals.FirstOrDefault(x => x.State == query.State

@@ -20,7 +20,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             };
         }
 
-        public ComplianceResult ProcessConformanceStep(ComplianceQuery query)
+        public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var complianceResult = new ComplianceResult();
             complianceResult = _processors
@@ -30,7 +30,7 @@ namespace LoanCompliance.BusinessLogic.Impl
                         if (current.Skip)
                             return current;
 
-                        var step = check.ProcessConformanceStep(query);
+                        var step = check.ProcessComplianceStep(query);
                         return current + step;
                     });
             return complianceResult;
