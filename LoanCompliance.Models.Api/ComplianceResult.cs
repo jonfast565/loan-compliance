@@ -12,17 +12,18 @@ namespace LoanCompliance.Models.Api
             Results = new List<TestResult>();
         }
 
-        public ComplianceResult(List<TestResult> failures)
+        public ComplianceResult(string testName, bool passed, string message)
         {
-            Results = failures;
+            Results = new List<TestResult> {new(testName, passed, message)};
         }
 
-        public ComplianceResult(TestResult failure)
+        public ComplianceResult(string testName, bool passed, params string[] messages)
         {
-            Results = new List<TestResult> {failure};
+            var results = messages
+                .Select(message => new TestResult(testName, passed, message))
+                .ToList();
+            Results = results;
         }
-
-        [JsonIgnore] public bool Skip { get; set; }
 
         [JsonRequired] public bool Success => Results.All(x => x.Passed);
 
@@ -39,8 +40,7 @@ namespace LoanCompliance.Models.Api
         {
             return new()
             {
-                Results = a.Results.Concat(b.Results).ToList(),
-                Skip = a.Skip || b.Skip
+                Results = a.Results.Concat(b.Results).ToList()
             };
         }
     }

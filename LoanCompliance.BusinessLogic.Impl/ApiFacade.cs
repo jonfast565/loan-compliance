@@ -20,19 +20,20 @@ namespace LoanCompliance.BusinessLogic.Impl
             };
         }
 
+        public bool ContinueOnFailure { get; set; } = true;
+
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var complianceResult = new ComplianceResult();
-            complianceResult = _processors
-                .Aggregate(complianceResult,
-                    (current, check) =>
-                    {
-                        if (current.Skip)
-                            return current;
-
-                        var step = check.ProcessComplianceStep(query);
-                        return current + step;
-                    });
+            foreach (var step in _processors)
+            {
+                var stepResult = step.ProcessComplianceStep(query);
+                if (!stepResult.Success && !step.ContinueOnFailure)
+                {
+                    return stepResult + complianceResult;
+                }
+                complianceResult = stepResult + complianceResult;
+            }
             return complianceResult;
         }
     }

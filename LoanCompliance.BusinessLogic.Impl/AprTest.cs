@@ -13,6 +13,8 @@ namespace LoanCompliance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
+        public bool ContinueOnFailure { get; set; } = true;
+
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var aprData = _dataAccess.GetAprData();
@@ -24,17 +26,18 @@ namespace LoanCompliance.BusinessLogic.Impl
 
             if (aprRule == null)
                 return new ComplianceResult(
-                    new TestResult("AprTest",false,$"APR Test not run for loan type {query.LoanType} " +
-                                                  $"with occupancy {query.OccupancyType} " +
-                                                  $"in state {query.State}"));
+                    "AprTest", true, $"APR Test not run for loan type {query.LoanType} " +
+                                     $"with occupancy {query.OccupancyType} " +
+                                     $"in state {query.State}");
 
             if (normalizedApr > aprRule.AnnualRatePercentage)
                 return new ComplianceResult(
-                    new TestResult("AptTest", false,
+                    "AptTest", false,
                     $"The {aprRule.AnnualRatePercentage * 100}% APR > {query.AnnualPercentageRate}% APR " +
                     $"maximum for {query.LoanType} in {query.State} " +
-                    $"with {query.OccupancyType}"));
-            return new ComplianceResult(new TestResult("AprTest", true, "Passed"));
+                    $"with {query.OccupancyType}");
+
+            return new ComplianceResult("AprTest", true, "Passed");
         }
     }
 }

@@ -355,8 +355,8 @@ namespace LoanCompliance.Tests
         private void PrintReasons(ComplianceResult processed)
         {
             foreach (var result in processed.Results)
-                foreach (var text in result.Messages) 
-                    TestContext.WriteLine(text);
+            foreach (var text in result.Messages)
+                TestContext.WriteLine($"Test {result.TestName} run -> Passed?: {result.Passed} with {text}");
         }
 
         #endregion

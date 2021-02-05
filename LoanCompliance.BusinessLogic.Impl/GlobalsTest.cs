@@ -13,6 +13,8 @@ namespace LoanCompliance.BusinessLogic.Impl
             _dataAccess = dataAccess;
         }
 
+        public bool ContinueOnFailure { get; set; } = false;
+
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var globals = _dataAccess.GetGlobalRulesetData();
@@ -20,16 +22,15 @@ namespace LoanCompliance.BusinessLogic.Impl
                                                                    && x.ApplicableLoanType == query.LoanType);
 
             if (applicableGlobalRule == null)
-                return new ComplianceResult(new TestResult("GlobalsTest", true, 
-                        $"Loan in state {query.State}, type {query.LoanType} does not require compliance testing"))
-                    {Skip = true};
+                return new ComplianceResult("GlobalsTest", true,
+                        $"A {query.LoanType} loan in state {query.State} does not require compliance testing.");
 
-            if (applicableGlobalRule.MaximumLoanAmount >= query.LoanAmount) 
-                return new ComplianceResult(new TestResult("GlobalsTest", true, "Passed"));
+            if (applicableGlobalRule.MaximumLoanAmount >= query.LoanAmount)
+                return new ComplianceResult("GlobalsTest", true, "Passed");
 
-            return new ComplianceResult(new TestResult("GlobalsTest", false, 
-                $"Maximum loan amount is {applicableGlobalRule.MaximumLoanAmount} for this state, yours is {query.LoanAmount}. " +
-                "This amount is not eligible for compliance testing.")) {Skip = true};
+            return new ComplianceResult("GlobalsTest", false,
+                $"The maximum loan amount is ${applicableGlobalRule.MaximumLoanAmount} for {query.State}. Yours is ${query.LoanAmount}. " +
+                "This amount is not eligible for compliance testing.");
         }
     }
 }
