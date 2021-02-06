@@ -19,7 +19,7 @@ namespace LoanCompliance.Api.Controllers
             _processor = processor;
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("process")]
         public ComplianceResult ProcessLoan(ComplianceQuery query)
         {
