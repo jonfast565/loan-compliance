@@ -39,7 +39,7 @@ namespace LoanCompliance.BusinessLogic.Impl
                 return new ComplianceResult(
                     "AptTest", false,
                     $"The {query.AnnualPercentageRate}% APR > {aprRule.AnnualRatePercentage * 100}% APR " +
-                    $"maximum for {query.LoanType} in {query.State} " +
+                    $"maximum for {query.LoanType} loans in {query.State} " +
                     $"with {query.OccupancyType}");
 
             return new ComplianceResult("AprTest", true, "Passed");
