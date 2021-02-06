@@ -16,6 +16,11 @@ namespace LoanCompliance.BusinessLogic.Impl
 
         public bool ContinueOnFailure { get; set; } = true;
 
+        /// <summary>
+        /// Processes validations of the loan fees, only works on fees applicable to a state
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var applicableFeeData = _dataAccess.GetApplicableFeeData();

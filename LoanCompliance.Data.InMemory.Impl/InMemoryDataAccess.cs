@@ -6,8 +6,16 @@ using LoanCompliance.Models.Enums;
 
 namespace LoanCompliance.Data.InMemory.Impl
 {
+    /// <summary>
+    /// Test data for loan compliance app.
+    /// Replace this with a real database
+    /// </summary>
     public class InMemoryDataAccess : IDataAccess
     {
+        /// <summary>
+        /// Gets APR validation data
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StateAprModel> GetAprData()
         {
             var aprData = new List<StateAprModel>
@@ -65,6 +73,10 @@ namespace LoanCompliance.Data.InMemory.Impl
             return aprData;
         }
 
+        /// <summary>
+        /// Gets fee validation data for what fees a state supports
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StateApplicableFeeModel> GetApplicableFeeData()
         {
             var result = new List<StateApplicableFeeModel>()
@@ -79,6 +91,10 @@ namespace LoanCompliance.Data.InMemory.Impl
             return result;
         }
 
+        /// <summary>
+        /// Gets global ruleset data for whether a fee should be processed or not
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<GlobalRulesetModel> GetGlobalRulesetData()
         {
             var result = new List<GlobalRulesetModel>()
@@ -94,6 +110,10 @@ namespace LoanCompliance.Data.InMemory.Impl
             return result;
         }
 
+        /// <summary>
+        /// Gets data for ranges of fees
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StateFeeRangeModel> GetFeeRangeData()
         {
             var result = new List<StateFeeRangeModel>

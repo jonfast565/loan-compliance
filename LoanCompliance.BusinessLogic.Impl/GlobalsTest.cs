@@ -15,6 +15,11 @@ namespace LoanCompliance.BusinessLogic.Impl
 
         public bool ContinueOnFailure { get; set; } = false;
 
+        /// <summary>
+        /// Processes steps related to whether or not the loan qualifies for processing
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var globals = _dataAccess.GetGlobalRulesetData();

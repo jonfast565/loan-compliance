@@ -6,6 +6,11 @@ namespace LoanCompliance.BusinessLogic.Impl
     {
         public bool ContinueOnFailure { get; set; } = false;
 
+        /// <summary>
+        /// Processes steps to ensure that the loan request is well-formed
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             if (query.AnnualPercentageRate < 0 || query.AnnualPercentageRate > 100)

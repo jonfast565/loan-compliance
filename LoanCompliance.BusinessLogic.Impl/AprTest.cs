@@ -15,6 +15,11 @@ namespace LoanCompliance.BusinessLogic.Impl
 
         public bool ContinueOnFailure { get; set; } = true;
 
+        /// <summary>
+        /// Processes an APR rule validation suite
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var aprData = _dataAccess.GetAprData();
@@ -33,7 +38,7 @@ namespace LoanCompliance.BusinessLogic.Impl
             if (normalizedApr > aprRule.AnnualRatePercentage)
                 return new ComplianceResult(
                     "AptTest", false,
-                    $"The {aprRule.AnnualRatePercentage * 100}% APR < {query.AnnualPercentageRate}% APR " +
+                    $"The {query.AnnualPercentageRate}% APR > {aprRule.AnnualRatePercentage * 100}% APR " +
                     $"maximum for {query.LoanType} in {query.State} " +
                     $"with {query.OccupancyType}");
 

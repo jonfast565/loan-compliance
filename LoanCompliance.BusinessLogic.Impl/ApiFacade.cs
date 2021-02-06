@@ -22,6 +22,11 @@ namespace LoanCompliance.BusinessLogic.Impl
 
         public bool ContinueOnFailure { get; set; } = true;
 
+        /// <summary>
+        /// Processes all steps in a suite together
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public ComplianceResult ProcessComplianceStep(ComplianceQuery query)
         {
             var complianceResult = new ComplianceResult();
